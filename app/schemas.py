@@ -11,7 +11,7 @@ class TaskResponse(BaseModel):
     result: str | None = None
     error: str | None = None
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None = None  # Теперь может быть None
 
     class Config:
         from_attributes = True

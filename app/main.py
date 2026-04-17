@@ -2,7 +2,13 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app import models, schemas, crud, database
 
-app = FastAPI(title="AI Agent Backend", version="1.0.0")
+# Создаём все таблицы при старте приложения
+models.Base.metadata.create_all(bind=database.engine)
+
+app = FastAPI(
+    title="AI Agent Backend",
+    version="1.0.0"
+    )
 
 def get_db():
     db = database.SessionLocal()
@@ -10,6 +16,13 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/")
+async def root():
+    return {
+        "message": "AI Agent Backend API",
+        "documentation": "/docs"        
+    }
 
 @app.post("/tasks", response_model=schemas.TaskResponse)
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):

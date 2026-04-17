@@ -11,4 +11,4 @@ class Task(Base):
     result = Column(Text)
     error = Column(Text)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now(), nullable=True)  # nullable=True
