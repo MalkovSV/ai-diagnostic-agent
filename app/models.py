@@ -3,6 +3,20 @@ from sqlalchemy.sql import func
 from app.database import Base
 
 class Task(Base):
+    """
+    Модель задачи в системе AI‑агента.
+
+    Представляет задачу, которую необходимо обработать. Хранится в таблице "tasks".
+
+    Attributes:
+        id (int): Уникальный идентификатор задачи (первичный ключ).
+        input_text (str): Исходный текст, переданный для обработки.
+        status (str): Статус задачи. Возможные значения: "pending", "completed", "failed".
+        result (str | None): Результат обработки (если есть).
+        error (str | None): Описание ошибки (если возникла).
+        created_at (datetime): Время создания задачи.
+        updated_at (datetime | None): Время последнего обновления статуса.
+    """
     __tablename__ = "tasks"
 
     id = Column(Integer, primary_key=True, index=True)
