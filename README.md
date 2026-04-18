@@ -30,15 +30,15 @@ https://github.com/MalkovSV/ai-diagnostic-agent
 
     FastAPI — фреймворк для создания REST API с автоматической документацией OpenAPI.
 
-    PostgreSQL — реляционная СУБД для хранения данных.
+    PostgreSQL — надёжная реляционная СУБД с поддержкой сложных запросов и транзакций.
 
     SQLAlchemy — ORM для работы с БД.
 
-    Pydantic — валидация данных и сериализация.
+    Pydantic — валидация данных и схемы API.
 
-    Docker — контейнеризация приложения.
+    Docker/Docker Compose — контейнеризация для воспроизводимости окружения и простого развёртывания.
 
-    pytest — написание unit‑тестов.
+    pytest — покрытие unit‑тестами бизнес‑логикив.
 
     Обоснование выбора: FastAPI обеспечивает высокую производительность и автоматическую генерацию документации. PostgreSQL надёжен для бизнес‑данных. Docker упрощает развёртывание.
 
@@ -57,7 +57,7 @@ https://github.com/MalkovSV/ai-diagnostic-agent
 
     Аутентификация/авторизация не реализована для упрощения тестового задания.
 
-    Миграции БД не включены 
+    Миграции БД не включены, для продакшена рекомендуется Alembic
 
 ## Проверка API
 1. Swagger UI
@@ -85,4 +85,8 @@ https://github.com/MalkovSV/ai-diagnostic-agent
 
     curl -X POST "http://localhost:8000/tasks" \
     -H "Content-Type: application/json" \
-    -d '{"input_text": "Пример текста для диагностики ребёнка с РАС"}'   
+    -d '{"input_text": "Пример текста для диагностики ребёнка с РАС"}'
+
+ ## Запуск тестов
+    docker-compose exec web pytest -v 
+         
